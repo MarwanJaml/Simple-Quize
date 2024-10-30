@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <title>Simple Quiz</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card card-primary card-inverse text-center">
+            <div class="card-block">
+                <p class="card-title display-3">Programming Quiz</p>
+            </div>
+        </div>  
+        <br><br>
+        
+
+        <div class="text-center">
+            
+           
+    
+            <br>
+            
+            <div id="results" class="text-primary "></div>
+
+            <!-- form element-->
+            <form name="QuizForm" onsubmit="submitAnswers(event)">
+                
+                  
+                <div class="text-left">
+                      <!-- Name Input -->
+                      <h3 class="body-font">Enter Your Name:</h3>
+                      <input type="text" id="username" name="username" class="form-control mb-1" placeholder="Your name" required>
+                    <h3 class="body-font">1. What is the meaning of HTML?</h3>
+                    <label class="cursor"><input type="radio" name="q1" value="a"> a. Hyper Markup Language</label><br>
+                    <label class="cursor"><input type="radio" name="q1" value="b"> b. Hyper Text Markup Language</label><br>
+                    <label class="cursor"><input type="radio" name="q1" value="c"> c. HyperText Markup Language</label>
+                    <br><br>
+                    
+                    <h3 class="body-font">2. Which class provides a responsive fixed width container?</h3>
+                    <label class="cursor"><input type="radio" name="q2" value="a"> a. .container</label><br>
+                    <label class="cursor"><input type="radio" name="q2" value="b"> b. .container-fluid</label><br>
+                    <label class="cursor"><input type="radio" name="q2" value="c"> c. .container-fixed</label>
+                    <br><br>
+                    
+                    <h3 class="body-font">3. What is the extension for the stylesheet's external file?</h3>
+                    <label class="cursor"><input type="radio" name="q3" value="a"> a. .htm</label><br>
+                    <label class="cursor"><input type="radio" name="q3" value="b"> b. .css</label><br>
+                    <label class="cursor"><input type="radio" name="q3" value="c"> c. .xml</label>
+                    <br><br>
+                    
+                    <h3 class="body-font">4. What is the correct syntax to output "Hello World" in C#?</h3>
+                    <label class="cursor"><input type="radio" name="q4" value="a"> a. cout << "Hello World";</label><br>
+                    <label class="cursor"><input type="radio" name="q4" value="b"> b. print("Hello World");</label><br>
+                    <label class="cursor"><input type="radio" name="q4" value="c"> c. System.out.println("Hello World");</label>
+                    <br><br>
+                    
+                    <h3 class="body-font">5. Who created Linux?</h3>
+                    <label class="cursor"><input type="radio" name="q5" value="a"> a. Linus Torvalds</label><br>
+                    <label class="cursor"><input type="radio" name="q5" value="b"> b. Wes Bos</label><br>
+                    <label class="cursor"><input type="radio" name="q5" value="c"> c. Scott Hanselman</label>
+                </div>
+
+                <br><br>
+                <!--Submit button element-->
+                <button type="submit" class="btn btn-lg btn-outline-primary myLink">Submit Answers</button>
+                <button type="button" class="btn btn-lg btn-outline-primary myLink" onclick="retakeQuiz()">Retake</button>
+            </form>
+            <br><br><br>
+
+            <!--Footer-->
+            <footer class="text-center">
+                <p>Good Luck.</p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Function to handle quiz submission and calculate score
+        function submitAnswers(event) {
+            event.preventDefault(); // Prevent form from submitting and refreshing page
+
+            const correctAnswers = ['b', 'b', 'b', 'a', 'a']; 
+            let score = 0;
+            const userName = document.getElementById("username").value;
+            // correct answer
+            correctAnswers.forEach((correctAnswer, index) => {
+                const answer = document.querySelector(`input[name="q${index + 1}"]:checked`);
+                if (answer && answer.value === correctAnswer) {
+                    score++;
+                }
+            });
+            // Show the score
+            document.getElementById("results").textContent = `You scored ${score} out of ${correctAnswers.length}`;
+        }
+        // Retake Function
+        function retakeQuiz() {
+            document.forms["QuizForm"].reset();
+            document.getElementById("results").textContent = ''; 
+        }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</body>
+</html>
