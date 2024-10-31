@@ -34,7 +34,8 @@
                       <!-- Name Input -->
                       <h3 class="body-font">Enter Your Name:</h3>
                       <input type="text" id="username" name="username" class="form-control mb-1" placeholder="Your name" required>
-                    <h3 class="body-font">1. What is the meaning of HTML?</h3>
+
+                      <h3 class="body-font">1. What is the meaning of HTML?</h3>
                     <label class="cursor"><input type="radio" name="q1" value="a"> a. Hyper Markup Language</label><br>
                     <label class="cursor"><input type="radio" name="q1" value="b"> b. Hyper Text Markup Language</label><br>
                     <label class="cursor"><input type="radio" name="q1" value="c"> c. HyperText Markup Language</label>
@@ -65,7 +66,7 @@
                 </div>
 
                 <br><br>
-                <!--Submit button element-->
+                <!--Submit element-->
                 <button type="submit" class="btn btn-lg btn-outline-primary myLink">Submit Answers</button>
                 <button type="button" class="btn btn-lg btn-outline-primary myLink" onclick="retakeQuiz()">Retake</button>
             </form>
@@ -79,9 +80,9 @@
     </div>
 
     <script>
-        // Function to handle quiz submission and calculate score
+        // Check Function 
         function submitAnswers(event) {
-            event.preventDefault(); // Prevent form from submitting and refreshing page
+            event.preventDefault();
 
             const correctAnswers = ['b', 'b', 'b', 'a', 'a']; 
             let score = 0;
@@ -92,9 +93,14 @@
                 if (answer && answer.value === correctAnswer) {
                     score++;
                 }
+                localStorage.setItem(userName, score);
+            document.getElementById("username").innerHTML = localStorage.getItem ("username");
             });
             // Show the score
-            document.getElementById("results").textContent = `You scored ${score} out of ${correctAnswers.length}`;
+            
+            document.getElementById("results","username").textContent = `${userName} ..  You score is  ${score}  of ${correctAnswers.length}`;
+            
+            
         }
         // Retake Function
         function retakeQuiz() {
@@ -102,6 +108,7 @@
             document.getElementById("results").textContent = ''; 
         }
     </script>
+   
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
